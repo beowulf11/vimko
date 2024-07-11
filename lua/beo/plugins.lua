@@ -1,12 +1,11 @@
 return {
     "tpope/vim-fugitive",
-    "nvim-treesitter/playground",
+    -- "nvim-treesitter/playground",
     -- "theprimeagen/harpoon",
     -- "theprimeagen/refactoring.nvim",
     "mbbill/undotree",
     "nvim-treesitter/nvim-treesitter-context",
     "eandrju/cellular-automaton.nvim",
-    "nvim-tree/nvim-tree.lua",
     "nvim-lua/plenary.nvim",
     "airblade/vim-gitgutter", -- Git gutter
     "kevinhwang91/nvim-bqf",  -- Better quickfix
