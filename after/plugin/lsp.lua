@@ -55,8 +55,8 @@ cmp.setup({
         { name = 'nvim_lua' },
         { name = 'luasnip', keyword_length = 2 },
         { name = 'buffer',  keyword_length = 3 },
-        { name = "copilot" }, -- , group_index = 1 }, -- Only show when no LSP results
-        -- { name = "supermaven" },
+        -- { name = "copilot" }, -- , group_index = 1 }, -- Only show when no LSP results
+        { name = "supermaven" },
     },
     formatting = lsp_zero.cmp_format({ details = false }),
     mapping = cmp.mapping.preset.insert({
