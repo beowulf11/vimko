@@ -56,6 +56,7 @@ return {
         dependencies = {
             -- LSP Support
             { "neovim/nvim-lspconfig" },
+            { "onsails/lspkind-nvim" },
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
             -- Autocompletion
@@ -126,26 +127,26 @@ return {
         opts = {},
     },
 
-    {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
-        config = function()
-            require("copilot").setup({})
-        end,
-    },
-    {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-            require("copilot_cmp").setup()
-        end
-    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     cmd = "Copilot",
+    --     event = "InsertEnter",
+    --     config = function()
+    --         require("copilot").setup({})
+    --     end,
+    -- },
+    -- {
+    --     "zbirenbaum/copilot-cmp",
+    --     config = function()
+    --         require("copilot_cmp").setup()
+    --     end
+    -- },
     {
         'stevearc/aerial.nvim',
         opts = {},
         config = function()
             require("aerial").setup({})
-            vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+            vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
         end,
         -- Optional dependencies
         dependencies = {
@@ -204,9 +205,31 @@ return {
     },
     {
         'stevearc/oil.nvim',
-        opts = {},
+        opts = {
+            delete_to_trash = true,
+        },
         -- Optional dependencies
         dependencies = { "echasnovski/mini.icons" },
         -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     },
+    { 'akinsho/toggleterm.nvim',      version = "*", config = true },
+    {
+        'Wansmer/treesj',
+        keys = { '<space>m', '<space>j', '<space>s' },
+        dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
+        config = function()
+            require('treesj').setup({
+                use_default_keymaps = false,
+                max_join_length = 100000,
+                vim.keymap.set("n", "<leader>sp", require('treesj').toggle),
+            })
+        end,
+    },
+    { "danielvolchek/tailiscope.nvim" },
+    {
+        'mawkler/refjump.nvim',
+        keys = { ']r', '[r' }, -- Uncomment to lazy load
+        opts = {}
+    }
+
 }
