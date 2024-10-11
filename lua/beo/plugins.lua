@@ -126,21 +126,6 @@ return {
         'stevearc/conform.nvim',
         opts = {},
     },
-
-    -- {
-    --     "zbirenbaum/copilot.lua",
-    --     cmd = "Copilot",
-    --     event = "InsertEnter",
-    --     config = function()
-    --         require("copilot").setup({})
-    --     end,
-    -- },
-    -- {
-    --     "zbirenbaum/copilot-cmp",
-    --     config = function()
-    --         require("copilot_cmp").setup()
-    --     end
-    -- },
     {
         'stevearc/aerial.nvim',
         opts = {},
@@ -208,11 +193,9 @@ return {
         opts = {
             delete_to_trash = true,
         },
-        -- Optional dependencies
         dependencies = { "echasnovski/mini.icons" },
-        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     },
-    { 'akinsho/toggleterm.nvim',      version = "*", config = true },
+    { 'akinsho/toggleterm.nvim', version = "*", config = true },
     {
         'Wansmer/treesj',
         keys = { '<space>m', '<space>j', '<space>s' },
@@ -225,7 +208,6 @@ return {
             })
         end,
     },
-    { "danielvolchek/tailiscope.nvim" },
     {
         'mawkler/refjump.nvim',
         keys = { ']r', '[r' }, -- Uncomment to lazy load
