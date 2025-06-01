@@ -1,5 +1,9 @@
+if not require("beo/utils").plugin_exists("nvim-ufo") then
+    return
+end
+
 vim.o.foldcolumn = '1' -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
@@ -22,17 +26,15 @@ for _, ls in ipairs(language_servers) do
         -- you can add other fields for setting up lsp server in this table
     })
 end
-require('ufo').setup()
+-- require('ufo').setup()
+
+-- Option 3: treesitter as a main provider instead
+-- (Note: the `nvim-treesitter` plugin is *not* needed.)
+-- ufo uses the same query files for folding (queries/<lang>/folds.scm)
+-- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
+require('ufo').setup({
+    provider_selector = function(bufnr, filetype, buftype)
+        return { 'treesitter', 'indent' }
+    end
+})
 --
-
--- -- Option 3: treesitter as a main provider instead
--- -- (Note: the `nvim-treesitter` plugin is *not* needed.)
--- -- ufo uses the same query files for folding (queries/<lang>/folds.scm)
--- -- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
--- require('ufo').setup({
---     provider_selector = function(bufnr, filetype, buftype)
---         return {'treesitter', 'indent'}
---     end
--- })
--- --
-

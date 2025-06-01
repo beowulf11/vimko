@@ -1,114 +1,47 @@
 return {
-    "tpope/vim-fugitive",
-    -- "nvim-treesitter/playground",
-    -- "theprimeagen/harpoon",
-    -- "theprimeagen/refactoring.nvim",
-    "mbbill/undotree",
-    "nvim-treesitter/nvim-treesitter-context",
-    "eandrju/cellular-automaton.nvim",
-    "nvim-lua/plenary.nvim",
-    "airblade/vim-gitgutter", -- Git gutter
-    "kevinhwang91/nvim-bqf",  -- Better quickfix
-
-    -- Color schemes
-    { "rose-pine/neovim",      name = "rose-pine", },
-    { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
-    { "rebelot/kanagawa.nvim", name = "kanagawa" },
-    -- END
-
     {
-        "nvim-telescope/telescope.nvim",
-        dependencies = {
-            "nvim-telescope/telescope-fzf-native.nvim",
-            build = "make",
-            {
-                "nvim-telescope/telescope-live-grep-args.nvim",
-                version = "^1.0.0",
-            }
-
-        },
-        tag = "0.1.6",
-    },
-
-    {
-        "folke/trouble.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        "mbbill/undotree",
         config = function()
-            require("trouble").setup {
-                icons = true,
+            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
+        end,
+    },
+    "nvim-lua/plenary.nvim",
+    {
+        "gitpushjoe/zuzu.nvim",
+        enabled = true,
+        opts = {
+            keymaps = {
+                build = {
+                    { "<leader>zu", "<leader>ZU", "<leader>zU", "<leader>Zu" },
+                    { "<leader>zv", "<leader>ZV", "<leader>zV", "<leader>Zv" },
+                    { "<leader>zs", "<leader>ZS", "<leader>zS", "<leader>Zs" },
+                },
+                reopen = {
+                    "<leader>z,",
+                    '<leader>z"',
+                    "<leader>z:",
+                },
+                new_profile = "<leader>z+",
+                new_project_profile = "<leader>z/",
+                edit_profile = "<leader>z=",
+                edit_all_applicable_profiles = "<leader>z?",
+                edit_all_profiles = "<leader>z*",
+                edit_hooks = "<leader>zh",
+
             }
-        end,
-        opts = {},
-
-    },
-
-    {
-        "nvim-treesitter/nvim-treesitter",
-        run = function()
-            local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-            ts_update()
-        end,
-    },
-
-    {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
-        dependencies = {
-            -- LSP Support
-            { "neovim/nvim-lspconfig" },
-            { "onsails/lspkind-nvim" },
-            { "williamboman/mason.nvim" },
-            { "williamboman/mason-lspconfig.nvim" },
-            -- Autocompletion
-            { "hrsh7th/nvim-cmp" },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lua" },
-            { "L3MON4D3/LuaSnip" },
         }
     },
 
     {
         "numToStr/Comment.nvim",
         opts = {},
+        enabled = false,
         lazy = false,
-    },
-
-
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        opts = {}
-    },
-
-    {
-        "kdheepak/lazygit.nvim",
-        cmd = {
-            "LazyGit",
-            "LazyGitConfig",
-            "LazyGitCurrentFile",
-            "LazyGitFilter",
-            "LazyGitFilterCurrentFile",
-        },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-    },
-
-    {
-        "folke/trouble.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {},
     },
 
     {
         "kylechui/nvim-surround",
+        enabled = true,
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
         config = function()
@@ -120,18 +53,21 @@ return {
 
     {
         "kevinhwang91/nvim-ufo",
+        enabled = true,
         dependencies = { "kevinhwang91/promise-async" },
     },
     {
-        'stevearc/conform.nvim',
+        "stevearc/conform.nvim",
+        enabled = true,
         opts = {},
     },
     {
-        'stevearc/aerial.nvim',
+        "stevearc/aerial.nvim",
         opts = {},
+        enabled = true,
         config = function()
             require("aerial").setup({})
-            vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
+            vim.keymap.set("n", "<leader>al", "<cmd>AerialToggle<CR>")
         end,
         -- Optional dependencies
         dependencies = {
@@ -140,78 +76,19 @@ return {
         },
     },
     {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
-    },
-    {
-        'goolord/alpha-nvim', -- Dashboard
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function()
-            require 'alpha'.setup(require 'alpha.themes.startify'.config)
-        end
-    },
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {}
-    },
-    {
-        "FabijanZulj/blame.nvim",
-        config = function()
-            require("blame").setup()
-        end
-    },
-    {
         'nmac427/guess-indent.nvim',
+        enabled = true,
         config = function()
             require('guess-indent').setup {}
         end
     },
 
     {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        opts = {
-            modes = {
-                search = { enabled = false },
-                char = { enabled = false }
-            }
-        },
-        keys = {
-            { "<C-f>", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-            -- { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-            -- { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-            -- { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            -- { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+        'akinsho/toggleterm.nvim',
+        enabled = true,
+        version = "*",
+        config = {
+            vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
         },
     },
-    {
-        "supermaven-inc/supermaven-nvim",
-    },
-    {
-        'stevearc/oil.nvim',
-        opts = {
-            delete_to_trash = true,
-        },
-        dependencies = { "echasnovski/mini.icons" },
-    },
-    { 'akinsho/toggleterm.nvim', version = "*", config = true },
-    {
-        'Wansmer/treesj',
-        keys = { '<space>m', '<space>j', '<space>s' },
-        dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
-        config = function()
-            require('treesj').setup({
-                use_default_keymaps = false,
-                max_join_length = 100000,
-                vim.keymap.set("n", "<leader>sp", require('treesj').toggle),
-            })
-        end,
-    },
-    {
-        'mawkler/refjump.nvim',
-        keys = { ']r', '[r' }, -- Uncomment to lazy load
-        opts = {}
-    }
-
 }

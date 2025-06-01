@@ -1,4 +1,9 @@
+if not require("beo/utils").plugin_exists("conform.nvim") then
+    return
+end
+
 require("conform").setup({
+    log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
@@ -7,7 +12,8 @@ require("conform").setup({
         json = { "prettier" },
         html = { "prettier" },
         css = { "prettier" },
-        python = { 'ruff' },
+        python = { 'black' },
+        astro = { "prettier" },
     },
 })
 
@@ -20,7 +26,12 @@ vim.api.nvim_create_user_command("Format", function(args)
             ["end"] = { args.line2, end_line:len() },
         }
     end
-    require("conform").format({ async = true, lsp_fallback = true, range = range })
+    require("conform").format({
+        async = true,
+        quiet = false,
+        lsp_format = "fallback",
+        range = range,
+    })
 end, { range = true })
 
 vim.keymap.set("n", "<leader>f", vim.cmd.Format);

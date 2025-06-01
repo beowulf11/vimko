@@ -1,0 +1,26 @@
+{
+  "main": {
+    "prefix": "main",
+    "body": [
+      "@layout.app()",
+      "\t@slot('main')",
+      "\t\t${2:main}",
+      "\t@endslot",
+      "@end"
+    ]
+  },
+  "main-title": {
+    "prefix": "main",
+    "body": [
+      "@layout.app({ title: ${1:title} })",
+      "\t@slot('meta')",
+      "\t\t<meta name=\"description\" content=\"A welcome page made with EdgeJS\">",
+      "\t@endslot",
+      "",
+      "\t@slot('main')",
+      "\t\t${2:main}",
+      "\t@endslot",
+      "@end"
+    ]
+  }
+}

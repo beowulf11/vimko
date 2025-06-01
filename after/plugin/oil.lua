@@ -1,3 +1,7 @@
+if not require("beo/utils").plugin_exists("oil.nvim") then
+    return
+end
+
 require("oil").setup({
     lsp_file_methods = {
         autosave_changes = "unmodified",

@@ -1,3 +1,7 @@
+if not require("beo/utils").plugin_exists("supermaven-nvim") then
+    return
+end
+
 require("supermaven-nvim").setup({
   keymaps = {
     accept_suggestion = "<Tab>",

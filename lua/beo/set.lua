@@ -1,6 +1,7 @@
 vim.opt.guicursor = ""
+vim.wo.cursorline = true
 
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = "en"
 
 vim.opt.nu = true
@@ -32,3 +33,9 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+vim.g.python3_host_prog = os.getenv("PYTHON3_HOST_PROG")
+local python3_path = os.getenv("PYTHON3_HOST_PROG")
+if python3_path == nil then
+    vim.g.python3_host_prog = python3_path
+end
