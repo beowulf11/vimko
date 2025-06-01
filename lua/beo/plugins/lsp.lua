@@ -71,7 +71,7 @@ return {
             -- Default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer', 'supermaven' },
+                default = { 'lsp', 'path', 'buffer', 'supermaven' },
                 providers = {
                     supermaven = {
                         name = 'supermaven',
@@ -85,15 +85,10 @@ return {
 
     },
     {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
-        dependencies = {
-            -- LSP Support
-            { "neovim/nvim-lspconfig" },
-            { "onsails/lspkind-nvim" },
-            { "williamboman/mason.nvim" },
-            { "williamboman/mason-lspconfig.nvim" },
-            { "saghen/blink.cmp" },
-        }
+        "neovim/nvim-lspconfig"
+    },
+    {
+        "williamboman/mason.nvim",
+        lazy = false,
     },
 }
