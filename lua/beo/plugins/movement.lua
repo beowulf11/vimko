@@ -45,8 +45,10 @@ return {
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" }
     },
+    { "andymass/vim-matchup" },
     {
         'mawkler/refjump.nvim',
+        lazy = false,
         keys = { ']r', '[r' }, -- Uncomment to lazy load
         opts = {}
     }

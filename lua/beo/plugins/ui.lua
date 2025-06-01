@@ -145,6 +145,40 @@ return {
                 },
 
             })
+
+            local gen_loader = require('mini.snippets').gen_loader
+            require('mini.snippets').setup({
+                -- Array of snippets and loaders (see |MiniSnippets.config| for details).
+                -- Nothing is defined by default. Add manually to have snippets to match.
+                snippets = {
+                     gen_loader.from_lang(),
+                },
+
+                -- Module mappings. Use `''` (empty string) to disable one.
+                mappings = {
+                    -- Expand snippet at cursor position. Created globally in Insert mode.
+                    expand = '<C-j>',
+
+                    -- Interact with default `expand.insert` session.
+                    -- Created for the duration of active session(s)
+                    jump_next = '<C-l>',
+                    jump_prev = '<C-h>',
+                    stop = '<C-c>',
+                },
+
+                -- Functions describing snippet expansion. If `nil`, default values
+                -- are `MiniSnippets.default_<field>()`.
+                expand = {
+                    -- Resolve raw config snippets at context
+                    prepare = nil,
+                    -- Match resolved snippets at cursor position
+                    match = nil,
+                    -- Possibly choose among matched snippets
+                    select = nil,
+                    -- Insert selected snippet
+                    insert = nil,
+                },
+            })
             vim.keymap.set("n", "<leader>hp", "<cmd>lua MiniDiff.toggle_overlay()<CR>",
                 { desc = "Toggle git diff overlay" })
         end
@@ -156,17 +190,41 @@ return {
         config = function()
             require("nvim-treesitter.configs").setup {
                 ensure_installed = { "tsx", "sql", "javascript", "bash", "python" },
-
                 -- indent = { enable = true }, -- Using UFO for folding
                 highlight = { enable = true, },
                 incremental_selection = { enable = true, },
+                matchup = {
+                    enable = true,             -- mandatory, false will disable the whole extension
+                    disable = { "c", "ruby" }, -- optional, list of language that will be disabled
+                },
                 injection = {
                     enable = true,
                     -- You could potentially disable default injections if they conflict,
                     -- but usually enabling is enough.
-                    disable = { "javascript" }, -- Use cautiously if needed
+                    -- disable = { "javascript" }, -- Use cautiously if needed
                 },
             }
+        end,
+    },
+    {
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require('nvim-ts-autotag').setup({
+                opts = {
+                    -- Defaults
+                    enable_close = true,         -- Auto close tags
+                    enable_rename = true,        -- Auto rename pairs of tags
+                    enable_close_on_slash = true -- Auto close on trailing </
+                },
+                -- Also override individual filetype configs, these take priority.
+                -- Empty by default, useful if one of the "opts" global settings
+                -- doesn't work well in a specific filetype
+                per_filetype = {
+                    ["html"] = {
+                        enable_close = false
+                    }
+                }
+            })
         end,
     },
     {

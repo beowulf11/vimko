@@ -1,0 +1,174 @@
+{
+    "svelte-page": {
+        "prefix": "s-page",
+        "body": [
+            "<script lang=\"ts\">",
+            "\t${1}",
+            "</script>",
+            "",
+            "<${2:main}>",
+            "</${2}>"
+        ],
+        "description": "add a script to your svelte file"
+    },
+    "svelte-server-loader": {
+        "prefix": "s-loader-server",
+        "body": [
+            "import { PageServerLoad } from './$types';",
+            "",
+            "export const load: PageServerLoad = async ({ params }) => {",
+            "\t${0}",
+            "};"
+        ],
+        "description": "add a script to your svelte file"
+    },
+    "svelte-snippet": {
+        "prefix": "s-snippet",
+        "body": [
+            "{#snippet ${1:name}()}",
+            "\t${0}",
+            "{/snippet}"
+        ],
+        "description": "add a script to your svelte file"
+    },
+    "svelte-if-block": {
+        "prefix": "s-if-block",
+        "body": [
+            "{#if ${1:condition}}",
+            "\t${2: <!-- content here -->}",
+            "{/if}"
+        ],
+        "description": "if block"
+    },
+    "svelte-if-else-block": {
+        "prefix": "s-if-else-block",
+        "body": [
+            "{#if ${1:condition}}",
+            "\t${2: <!-- content here -->}",
+            "{:else}",
+            "\t${3: <!-- else content here -->}",
+            "{/if}"
+        ],
+        "description": "if else block"
+    },
+    "svelte-if-else-if-block": {
+        "prefix": "s-if-else-if-block",
+        "body": [
+            "{#if ${1:condition}}",
+            "\t${2: <!-- content here -->}",
+            "{:else if ${3: otherCondition}}",
+            "\t${4: <!-- else if content here -->}",
+            "{:else}",
+            "\t${5: <!-- else content here -->}",
+            "{/if}"
+        ],
+        "description": "if else if block"
+    },
+    "svelte-each-block": {
+        "prefix": "s-each-block",
+        "body": [
+            "{#each ${1:items} as ${2:item}}",
+            "\t${3: <!-- content here -->}",
+            "{/each}"
+        ],
+        "description": "each block"
+    },
+    "svelte-each-else-block": {
+        "prefix": "s-each-else-block",
+        "body": [
+            "{#each ${1:items} as ${2:item}}",
+            "\t${3: <!-- content here -->}",
+            "{:else}",
+            "\t${4: <!-- empty list -->}",
+            "{/each}"
+        ],
+        "description": "each else block"
+    },
+    "svelte-each-index-block": {
+        "prefix": "s-each-index-block",
+        "body": [
+            "{#each ${1:items} as ${2:item},${3:i}}",
+            "\t${4: <!-- content here -->}",
+            "{/each}"
+        ],
+        "description": "each index block"
+    },
+    "svelte-each-key-block": {
+        "prefix": "s-each-key-block",
+        "body": [
+            "{#each ${1:items} as ${2:item},(${3:key})}",
+            "\t${4: <!-- content here -->}",
+            "{/each}"
+        ],
+        "description": "each index block"
+    },
+    "svelte-each-index-key-block": {
+        "prefix": "s-each-index-key-block",
+        "body": [
+            "{#each ${1:items} as ${2:item},i (${3:key})}",
+            "\t${4: <!-- content here -->}",
+            "{/each}"
+        ],
+        "description": "each index key block"
+    },
+    "svelte-await-then-block": {
+        "prefix": "s-await-then-block",
+        "body": [
+            "{#await ${1:promise}}",
+            "\t<!-- promise is pending -->",
+            "{:then ${2:value}}",
+            "\t<!-- promise was fulfilled -->",
+            "{/await}"
+        ],
+        "description": "await then block"
+    },
+    "svelte-await-short-block": {
+        "prefix": "s-await-short-block",
+        "body": [
+            "{#await ${1:promise} then ${2:value}}",
+            "\t<!-- promise was fulfilled -->",
+            "{/await}"
+        ],
+        "description": "await short block"
+    },
+    "svelte-await-catch-block": {
+        "prefix": "s-await-catch-block",
+        "body": [
+            "{#await ${1:promise}}",
+            "\t<!-- ${1:promise} is pending -->",
+            "{:then ${value}}",
+            "\t<!-- ${1:promise} was fulfilled -->",
+            "{:catch error}",
+            "\t<!-- ${1:promise} was rejected -->",
+            "{/await}"
+        ],
+        "description": "await catch block"
+    },
+    "svelte-on-event-modifiers": {
+        "prefix": "s-on-event-modifiers",
+        "body": [
+            "on:${1:eventname}|${2|preventDefault,stopPropagation,passive,capture,once|}={${3:handler}}"
+        ],
+        "description": "on event w/ modifiers"
+    },
+    "svelte-transition": {
+        "prefix": "s-transition",
+        "body": ["${1|transition,in,out|}:${2:name}"],
+        "description": "transition"
+    },
+    "svelte-animate": {
+        "prefix": "s-animate",
+        "body": ["animate:${1:name}={${2:params}}"],
+        "description": "animate"
+    },
+    "svelte-tweened": {
+        "prefix": "s-tweened",
+        "body": ["const ${1:store} = tweened(${2:value}, ${3:options});"],
+        "description": "svelte create tweened store"
+    },
+    "svelte-spring": {
+        "prefix": "s-spring",
+        "body": ["const ${1:store} = spring(${2:value}, ${3:options});"],
+        "description": "svelte create spring store"
+    }
+}
