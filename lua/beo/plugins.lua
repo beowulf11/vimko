@@ -6,8 +6,7 @@ return {
         end,
     },
     "nvim-lua/plenary.nvim",
-    {
-        "gitpushjoe/zuzu.nvim",
+    { "gitpushjoe/zuzu.nvim",
         enabled = true,
         opts = {
             keymaps = {
@@ -84,11 +83,23 @@ return {
     },
 
     {
+        "nvzone/floaterm",
+        dependencies = "nvzone/volt",
+        opts = {},
+        cmd = "FloatermToggle",
+        enabled = true,
+        lazy = false,
+        config = function()
+            vim.keymap.set("n", "<leader>t", "<cmd>FloatermToggle<CR>", { desc = "Toggle terminal" })
+        end,
+    },
+
+    {
         'akinsho/toggleterm.nvim',
         enabled = true,
         version = "*",
-        config = {
-            vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
-        },
+        -- config = {
+        --     vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+        -- },
     },
 }

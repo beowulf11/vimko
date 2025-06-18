@@ -151,7 +151,7 @@ return {
                 -- Array of snippets and loaders (see |MiniSnippets.config| for details).
                 -- Nothing is defined by default. Add manually to have snippets to match.
                 snippets = {
-                     gen_loader.from_lang(),
+                    gen_loader.from_lang(),
                 },
 
                 -- Module mappings. Use `''` (empty string) to disable one.
@@ -283,11 +283,24 @@ return {
         dependencies = { "echasnovski/mini.icons" },
     },
     {
-        'brenoprata10/nvim-highlight-colors',
-        enabled = true,
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
         config = function()
             vim.opt.termguicolors = true
-            require('nvim-highlight-colors').setup({})
+            require("colorizer").setup({
+                filetypes = {
+                    "css",
+                    "javascript",
+                    html = { mode = "foreground" },
+                },
+                user_default_options = {
+                    css = true,
+                    css_fn = true,     -- Enable parsing functions like oklch(...)
+                    tailwind = "both", -- Enable tailwind colors
+                    mode = "virtualtext",
+                    virtualtext = "■",
+                }
+            })
         end
     },
 }

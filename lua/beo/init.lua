@@ -1,6 +1,7 @@
 require("beo.set")
 require("beo.remap")
 require("beo.autocmd")
+require("beo.functions")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
